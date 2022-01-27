@@ -23,14 +23,37 @@ const connectionString = "mongodb+srv://shubham:shubham@cluster0.f1yma.mongodb.n
 //Connection the database
 MongoClient.connect(connectionString, {useUnifiedTopology:true})
     .then(client => {
-        console.log('connected to database')
+        console.log('connected to database server')
         const db = client.db('star-wars-quotes')
-})
+        const quotesCollection = db.collection('quotes')
+        
+        //1. Create with POST
+        //Create route with creating the quotes
+        // Two parameters first one is route, second is function which you want to execute
+        app.post('/quotes',(req,res)=>{
+            //inserting the document
+                quotesCollection.insertOne(req.body)
+                //Post inserting getting the results
+            .then(result => {
+                console.log(result)
+            })
+            //Error for document
+            .catch(error => console.log(error))
+        })
 
-//Create route with creating the quotes
-app.post('/quotes',(req,res)=>{
-    res.send(req.body)
-})
+        // 2. Reading data from the DB
+        app.get('/getall', (req, res) => {
+            //Collecting the collection quotes from DB and changing them from objects of objects into array of objects form
+            db.collection('quotes').find().toArray()
+            //Waiting for the promise to send the data back
+            .then(result => {
+                res.send(result)
+            })
+            //Waiting for the promise to send the error back
+            .catch(error => consolelog(error))
+        })
+
+}).catch(console.error)//MongoDB Altas Cluster/Server connection error
 
 const PORT=5000
 
