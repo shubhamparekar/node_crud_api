@@ -4,6 +4,7 @@
   "description": "SimpleCRUDApp",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/shubhamparekar/node_crud_api/issues"
   },
-  "homepage": "https://github.com/shubhamparekar/node_crud_api#readme"
+  "homepage": "https://github.com/shubhamparekar/node_crud_api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "expressjs": "^1.0.1",
+    "mongodb": "^4.3.1",
+    "mongoose": "^6.1.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
